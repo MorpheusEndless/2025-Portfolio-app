@@ -1,5 +1,5 @@
 import React, { useState,forwardRef } from 'react';
-import logo from '../images/logo.png';
+import logo from "../images/FM.png"
 import "./Navbar.css";
 
 export const Navbar = forwardRef((props, ref) => {
