@@ -34,6 +34,7 @@ export const Home = () => {
   const pRef = useRef();
   const formRef = useRef();
   const [formSent, setFormSent] = useState(false);
+  const whatsappMessage = " Hi there I’d love to discuss how I can help create seamless, user-centered web experiences. Looking forward to connecting!";
   
   const sendEmail = (e) => {
     e.preventDefault();
@@ -364,7 +365,7 @@ contactTimeline.to(contactElements, {
      <div className="section-line"></div>
   <div className="social-container">
     <a 
-      href="https://wa.me/your-number" 
+  href={`https://wa.me/263712724377?text=${encodeURIComponent(whatsappMessage)}`} 
       target="_blank" 
       rel="noopener noreferrer"
       className="social-icon whatsapp"
@@ -374,7 +375,7 @@ contactTimeline.to(contactElements, {
     </a>
     
     <a
-      href="https://linkedin.com/in/your-profile"
+      href="https://www.linkedin.com/in/daniel-moyo-882145301/"
       target="_blank"
       rel="noopener noreferrer"
       className="social-icon linkedin"
@@ -384,7 +385,7 @@ contactTimeline.to(contactElements, {
     </a>
 
     <a
-      href="https://github.com/your-username"
+      href="https://github.com/MorpheusEndless"
       target="_blank"
       rel="noopener noreferrer"
       className="social-icon github"

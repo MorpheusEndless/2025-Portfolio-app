@@ -556,6 +556,12 @@ html {
     grid-template-rows: auto repeat(4, 1fr);
   }
 
+  .work-container h2 {
+    font-size: 2rem;
+    letter-spacing: 8px;
+    margin-bottom: 3rem;
+  }
+
   #work-item-1,
   #work-item-2,
   #work-item-3,
