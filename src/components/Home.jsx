@@ -12,7 +12,7 @@ const SERVICE_CONTENT = {
   },
   dev: {
     title: "Dev",
-    content: "Full-stack development services leveraging cutting-edge technologies to build scalable, efficient, and maintainable web applications."
+    content: "Front-end development services leveraging cutting-edge technologies to build scalable, efficient, and maintainable web applications."
   },
   design: {
     title: "Design",
@@ -278,7 +278,11 @@ contactTimeline.to(contactElements, {
               <a href="https://genesiss-real-estate.netlify.app/">
                 <div class="work-info">
                   <h3>Genesis</h3>
-                  <p>Project description goes here</p>
+                  <p>Genesis Real Estate — helps people buy, sell, 
+                    and invest in properties. Whether it’s finding a 
+                    first home, upgrading to something bigger, or securing
+                    a rental property, we guide clients through 
+                    the whole process with local expertise...</p>
                 </div>
               </a>
                 
