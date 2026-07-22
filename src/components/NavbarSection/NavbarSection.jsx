@@ -1,10 +1,11 @@
-import React, { useState,forwardRef } from 'react';
-import logo from "../images/FM.png"
-import "./Navbar.css";
+// NavbarSection.jsx
+import React, { useState, forwardRef } from 'react';
+import logo from "../../images/FM.png";
+import styles from './NavbarSection.module.css'; // ← Import the module
 
-export const Navbar = forwardRef((props, ref) => {
+export const NavbarSection = forwardRef((props, ref) => {
   const [isOpen, setIsOpen] = useState(false);
-  
+
   const handleNavigation = (id) => {
     setIsOpen(false);
     document.getElementById(id)?.scrollIntoView({
@@ -14,15 +15,15 @@ export const Navbar = forwardRef((props, ref) => {
   };
 
   return (
-    <nav className='navbar' ref={ref}>
-      <div className="logo-container">
+    <nav className="navbar" ref={ref}> {/* ← Keep this global for GSAP */}
+      <div className={styles.logoContainer}> {/* ← Local */}
         <a href="#home" onClick={() => handleNavigation('home')}>
           <img src={logo} alt="Website Logo" />
         </a>
       </div>
 
       {/* Desktop Menu */}
-      <ul className="desktop-menu">
+      <ul className={styles.desktopMenu}> {/* ← Local */}
         {['home', 'about', 'work', 'services', 'contact'].map((item) => (
           <li key={item}>
             <a
@@ -31,7 +32,7 @@ export const Navbar = forwardRef((props, ref) => {
                 e.preventDefault();
                 handleNavigation(item);
               }}
-              className="nav-link"
+              className="nav-link" // ← Keep global if GSAP needs it, or local if not
             >
               // {item}
             </a>
@@ -41,16 +42,16 @@ export const Navbar = forwardRef((props, ref) => {
 
       {/* Mobile Menu Toggle */}
       <button 
-        className={`ham-menu ${isOpen ? 'active' : ''}`}
+        className={`${styles.hamMenu} ${isOpen ? styles.hamMenuActive : ''}`} // ← Local with conditional
         onClick={() => setIsOpen(!isOpen)}
         aria-label="Toggle navigation"
       >
-        <span className="ham-menu__line"></span>
-        <span className="ham-menu__line"></span>
+        <span className={styles.hamMenuLine}></span>
+        <span className={styles.hamMenuLine}></span>
       </button>
 
       {/* Mobile Menu */}
-      <div className={`mobile-menu ${isOpen ? 'active' : ''}`}>
+      <div className={`${styles.mobileMenu} ${isOpen ? styles.mobileMenuActive : ''}`}> {/* ← Local with conditional */}
         <ul>
           {['home', 'about', 'work', 'services', 'contact'].map((item) => (
             <li key={item}>

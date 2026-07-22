@@ -1,0 +1,191 @@
+/* ===== ROOT SECTION ===== */
+.footerSection {
+  background: #000000;
+  padding: 1rem 13rem;
+  position: relative;
+  z-index: 10;
+}
+
+.footerSection p {
+  color: white;
+  font-family: 'Anaheim', sans-serif;
+  letter-spacing: 2px;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+/* ===== SECTION LINE (Added default styles since it was missing at root) ===== */
+.sectionLine {
+  width: 70%;
+  height: 2.8px;
+  background: linear-gradient(90deg, transparent 0%, #666 50%, transparent 100%);
+  margin: 3rem auto;
+}
+
+/* ===== SOCIAL CONTAINER ===== */
+.socialContainer {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  text-decoration: none;
+  direction: none;
+}
+
+/* ===== SOCIAL ICON ===== */
+.socialIcon {
+  width: 50px;
+  height: 50px;
+  margin-top: -52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  direction: none;
+  text-decoration: none;
+  animation: float 4s ease-in-out infinite;
+}
+
+.socialIcon:hover {
+  animation: none;
+  transform: translateY(-5px) scale(1.1);
+  box-shadow: 0 5px 15px #00ccff;
+}
+
+.socialIcon::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform: scale(0);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.socialIcon:hover::before {
+  transform: scale(1);
+}
+
+.socialIcon i {
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+/* ===== INDIVIDUAL ICON COLORS (Local) ===== */
+.whatsapp {
+  color: #ffffff;
+}
+.linkedin {
+  color: #ffffff;
+}
+.github {
+  color: #f0f6fc;
+}
+.email {
+  color: #ffffff;
+}
+
+/* ===== INDIVIDUAL HOVER EFFECTS (Local) ===== */
+.whatsapp:hover {
+  background: #000000;
+  color: #00ccff;
+}
+.linkedin:hover {
+  background: #000000;
+  color: #00ccff;
+}
+.github:hover {
+  background: #000000;
+  color: #00ccff;
+}
+.email:hover {
+  background: #000000;
+  color: #00ccff;
+}
+
+/* ===== FLOATING ANIMATION ===== */
+/* @keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+} */
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1200px) {
+  .footerSection {
+    padding: 1rem 8rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .footerSection {
+    padding: 1rem 4rem;
+  }
+  .footerSection p {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .footerSection {
+    padding: 1rem 2rem;
+  }
+  .footerSection p {
+    font-size: 1rem;
+    letter-spacing: 1px;
+  }
+  .socialContainer {
+    gap: 1rem;
+    padding: 1rem;
+  }
+  .socialIcon {
+    width: 45px;
+    height: 45px;
+    font-size: 1.5rem;
+    margin-top: -45px;
+  }
+  .sectionLine {
+    width: 80%;
+    margin: 2.5rem auto;
+    height: 2.8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footerSection {
+    padding: 1rem;
+  }
+  .footerSection p {
+    font-size: 0.9rem;
+  }
+  .socialContainer {
+    gap: 0.8rem;
+    padding: 0.8rem;
+  }
+  .socialIcon {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    margin-top: -40px;
+  }
+  .socialIcon:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 3px 10px #00ccff;
+  }
+  .sectionLine {
+    width: 80%;
+    height: 1.5px;
+    margin: 1.5rem auto;
+  }
+}

@@ -1,0 +1,161 @@
+/* src/components/ContactSection/ContactSection.module.css */
+
+/* ===== GLOBAL: ID for GSAP Trigger ===== */
+:global(#contact) {
+  padding: 6rem 2rem;
+  background: #000000;
+  color: white;
+  text-align: center;
+}
+
+/* ===== LOCAL: Container and Form ===== */
+.contactContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contactContainer h2 {
+  font-family: 'Anaheim', sans-serif;
+  letter-spacing: 14px;
+  font-size: 3rem;
+  margin-bottom: 4rem;
+}
+
+.contactForm {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 3rem;
+  border-radius: 12px;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.inputPair {
+  display: flex;
+  gap: 2rem;
+}
+
+/* ===== GLOBAL: GSAP Targets ===== */
+:global(.form-input) {
+  flex: 1;
+  padding: 1.2rem;
+  border: 1px solid #333;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  background: transparent;
+  color: white;
+  font-family: 'Anaheim', sans-serif;
+  font-weight: bold;
+  letter-spacing: 4px;
+  font-size: 1.7cap;
+}
+
+:global(.form-textarea) {
+  height: 220px;
+  padding: 1.2rem;
+  border: 1px solid #333;
+  border-radius: 20px;
+  font-size: 1.1rem;
+  resize: vertical;
+  background: transparent;
+  color: white;
+  font-family: 'Anaheim', sans-serif;
+  font-weight: bold;
+  letter-spacing: 4px;
+  font-size: 1.7cap;
+}
+
+:global(.submit-btn) {
+  padding: 1.2rem 4rem;
+  background: transparent;
+  color: white;
+  border: 1px solid #333;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  margin-top: 1rem;
+  font-family: 'Anaheim', sans-serif;
+  font-weight: bold;
+  letter-spacing: 4px;
+  font-size: 1.9cap;
+}
+
+:global(.submit-btn):hover {
+  color: #00ccff;
+  transition: 1s;
+}
+
+:global(.submit-btn):disabled {
+  background: #555;
+  cursor: not-allowed;
+}
+
+/* ===== SUCCESS/ERROR MESSAGES (Local) ===== */
+.successMessage {
+  color: #4BB543;
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+.errorMessage {
+  color: #ff4444;
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  :global(#contact) {
+    padding: 4rem 1.5rem;
+  }
+
+  .contactContainer h2 {
+    font-size: 2rem;
+    letter-spacing: 8px;
+    margin-bottom: 3rem;
+  }
+
+  .contactForm {
+    padding: 2rem;
+  }
+
+  .inputPair {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  :global(.submit-btn) {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .contactContainer h2 {
+    font-size: 1.8rem;
+    letter-spacing: 4px;
+  }
+
+  :global(.form-input),
+  :global(.form-textarea) {
+    font-size: 1rem;
+    padding: 1rem;
+  }
+
+  :global(.submit-btn) {
+    padding: 1rem 2rem;
+  }
+}

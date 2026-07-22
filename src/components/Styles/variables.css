@@ -1,0 +1,35 @@
+:root {
+    /* ===== COLORS ===== */
+    --color-primary: #00ccff;
+    --color-primary-hover: #008dce;
+    --color-background: #000000;
+    --color-background-light: #0a0a0a;
+    --color-text: #ffffff;
+    --color-text-muted: #999999;
+    --color-border: #333333;
+  
+    /* ===== FONTS ===== */
+    --font-primary: 'Anaheim', sans-serif;
+    --font-heading: 'Poppins', sans-serif;
+  
+    /* ===== SPACING (Based on 0.5rem = 8px scale) ===== */
+    --spacing-xs: 0.5rem;   /* 8px */
+    --spacing-sm: 1rem;     /* 16px */
+    --spacing-md: 2rem;     /* 32px */
+    --spacing-lg: 4rem;     /* 64px */
+    --spacing-xl: 6rem;     /* 96px */
+  
+    /* ===== BREAKPOINTS ===== */
+    --breakpoint-mobile: 768px;
+    --breakpoint-tablet: 1024px;
+    --breakpoint-desktop: 1200px;
+  
+    /* ===== BORDER RADIUS ===== */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-full: 9999px;
+  
+    /* ===== TRANSITIONS ===== */
+    --transition-fast: 0.3s ease;
+    --transition-smooth: 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  }
