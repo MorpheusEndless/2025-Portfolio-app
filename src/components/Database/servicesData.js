@@ -1,5 +1,3 @@
-// src/Database/servicesData.js
-
 export const SERVICES = {
     uiux: {
       id: 'uiux',

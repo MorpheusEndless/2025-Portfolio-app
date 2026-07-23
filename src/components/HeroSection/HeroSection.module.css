@@ -1,6 +1,3 @@
-/* src/components/HeroSection/HeroSection.module.css */
-
-/* ===== GLOBAL: ID for GSAP Trigger ===== */
 :global(#home) {
   position: relative;
   z-index: 1;

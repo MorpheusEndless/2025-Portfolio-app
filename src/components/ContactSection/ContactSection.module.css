@@ -1,6 +1,3 @@
-/* src/components/ContactSection/ContactSection.module.css */
-
-/* ===== GLOBAL: ID for GSAP Trigger ===== */
 :global(#contact) {
   padding: 6rem 2rem;
   background: #000000;
@@ -8,7 +5,6 @@
   text-align: center;
 }
 
-/* ===== LOCAL: Container and Form ===== */
 .contactContainer {
   max-width: 1200px;
   margin: 0 auto;
@@ -46,7 +42,6 @@
   gap: 2rem;
 }
 
-/* ===== GLOBAL: GSAP Targets ===== */
 :global(.form-input) {
   flex: 1;
   padding: 1.2rem;

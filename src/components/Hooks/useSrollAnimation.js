@@ -1,4 +1,3 @@
-// src/hooks/useScrollAnimation.js
 import { useLayoutEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';

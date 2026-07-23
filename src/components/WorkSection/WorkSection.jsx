@@ -1,5 +1,5 @@
 import { projects } from '../Database/projectsData';
-import { WorkItem } from './WorkItem';
+import { WorkItem } from './workitem';
 import styles from './WorkSection.module.css'; 
 
 export const WorkSection = () => {

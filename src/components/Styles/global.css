@@ -1,7 +1,5 @@
-/* ===== GLOBAL STYLES (Move to global.css) ===== */
 @import './variables.css';
 
-/* Force the pin-spacer to have a lower z-index than the About section */
 .pin-spacer {
   z-index: 0 !important;
 }

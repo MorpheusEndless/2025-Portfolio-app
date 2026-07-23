@@ -1,7 +1,7 @@
 // NavbarSection.jsx
 import React, { useState, forwardRef } from 'react';
 import logo from "../../images/FM.png";
-import styles from './NavbarSection.module.css'; // ← Import the module
+import styles from './NavbarSection.module.css';
 
 export const NavbarSection = forwardRef((props, ref) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,15 +15,15 @@ export const NavbarSection = forwardRef((props, ref) => {
   };
 
   return (
-    <nav className="navbar" ref={ref}> {/* ← Keep this global for GSAP */}
-      <div className={styles.logoContainer}> {/* ← Local */}
+    <nav className="navbar" ref={ref}>
+      <div className={styles.logoContainer}> 
         <a href="#home" onClick={() => handleNavigation('home')}>
           <img src={logo} alt="Website Logo" />
         </a>
       </div>
 
-      {/* Desktop Menu */}
-      <ul className={styles.desktopMenu}> {/* ← Local */}
+     
+      <ul className={styles.desktopMenu}>
         {['home', 'about', 'work', 'services', 'contact'].map((item) => (
           <li key={item}>
             <a
@@ -32,7 +32,7 @@ export const NavbarSection = forwardRef((props, ref) => {
                 e.preventDefault();
                 handleNavigation(item);
               }}
-              className="nav-link" // ← Keep global if GSAP needs it, or local if not
+              className="nav-link"
             >
               // {item}
             </a>
@@ -42,7 +42,7 @@ export const NavbarSection = forwardRef((props, ref) => {
 
       {/* Mobile Menu Toggle */}
       <button 
-        className={`${styles.hamMenu} ${isOpen ? styles.hamMenuActive : ''}`} // ← Local with conditional
+        className={`${styles.hamMenu} ${isOpen ? styles.hamMenuActive : ''}`}
         onClick={() => setIsOpen(!isOpen)}
         aria-label="Toggle navigation"
       >
@@ -51,7 +51,7 @@ export const NavbarSection = forwardRef((props, ref) => {
       </button>
 
       {/* Mobile Menu */}
-      <div className={`${styles.mobileMenu} ${isOpen ? styles.mobileMenuActive : ''}`}> {/* ← Local with conditional */}
+      <div className={`${styles.mobileMenu} ${isOpen ? styles.mobileMenuActive : ''}`}> 
         <ul>
           {['home', 'about', 'work', 'services', 'contact'].map((item) => (
             <li key={item}>

@@ -1,4 +1,3 @@
-/* ===== ROOT SECTION ===== */
 .footerSection {
   background: #000000;
   padding: 1rem 13rem;
@@ -14,7 +13,6 @@
   text-align: center;
 }
 
-/* ===== SECTION LINE (Added default styles since it was missing at root) ===== */
 .sectionLine {
   width: 70%;
   height: 2.8px;
@@ -22,7 +20,6 @@
   margin: 3rem auto;
 }
 
-/* ===== SOCIAL CONTAINER ===== */
 .socialContainer {
   display: flex;
   justify-content: center;
@@ -32,7 +29,6 @@
   direction: none;
 }
 
-/* ===== SOCIAL ICON ===== */
 .socialIcon {
   width: 50px;
   height: 50px;
@@ -107,19 +103,6 @@
   background: #000000;
   color: #00ccff;
 }
-
-/* ===== FLOATING ANIMATION ===== */
-/* @keyframes float {
-  0% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
-} */
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 1200px) {

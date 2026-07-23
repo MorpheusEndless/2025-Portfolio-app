@@ -1,4 +1,3 @@
-// src/components/WorkSection/WorkItem.jsx
 import styles from './WorkSection.module.css';
 
 export const WorkItem = ({ project, index }) => {
@@ -8,7 +7,7 @@ export const WorkItem = ({ project, index }) => {
         <div className={styles.workInfo}>
           <h3>{project.title}</h3>
           <p>{project.description}</p>
-          <span className={styles.viewLink}>View Project →</span> {/* ← New button */}
+          <span className={styles.viewLink}>View Project →</span> 
         </div>
       </a>
     </div>

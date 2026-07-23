@@ -1,10 +1,9 @@
-// src/data/projectsData.js
 export const projects = [
     {
       id: 'genesis-real-estate',
       title: 'Genesis Real Estate',
       description: 'Genesis Real Estate — helps people buy, sell, and invest in properties...',
-      image: '/images/Genesis Real Estate.png', // Note: images in public folder use '/'
+      image: '/images/Genesis Real Estate.png', 
       link: 'https://genesiss-real-estate.netlify.app/'
     },
     {

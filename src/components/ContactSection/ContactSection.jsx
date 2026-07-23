@@ -2,7 +2,7 @@
 import { useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
 import { EMAILJS_CONFIG } from '../utils/emailjsConfig';
-import styles from './ContactSection.module.css'; // ← Changed import
+import styles from './ContactSection.module.css'; 
 
 export const ContactSection = () => {
   const formRef = useRef();
@@ -33,43 +33,43 @@ export const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="section"> {/* ← 'section' is global */}
-      <div className={styles.contactContainer}> {/* ← Local */}
+    <section id="contact" className="section"> 
+      <div className={styles.contactContainer}> 
         <h2>Contact</h2>
         
-        <form className={styles.contactForm} ref={formRef} onSubmit={sendEmail}> {/* ← Local */}
-          <div className={styles.inputGroup}> {/* ← Local */}
+        <form className={styles.contactForm} ref={formRef} onSubmit={sendEmail}> 
+          <div className={styles.inputGroup}> 
             
-            <div className={styles.inputPair}> {/* ← Local */}
+            <div className={styles.inputPair}> 
               <input 
                 type="text" 
                 name="first_name"
                 placeholder="First Name" 
-                className="form-input" // ← GSAP target (global)
+                className="form-input" 
                 required
               />
               <input 
                 type="text" 
                 name="last_name"
                 placeholder="Last Name" 
-                className="form-input" // ← GSAP target (global)
+                className="form-input" 
                 required
               />
             </div>
             
-            <div className={styles.inputPair}> {/* ← Local */}
+            <div className={styles.inputPair}> 
               <input 
                 type="email" 
                 name="email"
                 placeholder="Email" 
-                className="form-input" // ← GSAP target (global)
+                className="form-input" 
                 required
               />
               <input 
                 type="tel" 
                 name="mobile"
                 placeholder="Mobile" 
-                className="form-input" // ← GSAP target (global)
+                className="form-input" 
               />
             </div>
           </div>
@@ -77,11 +77,11 @@ export const ContactSection = () => {
           <textarea 
             name="message"
             placeholder="Message" 
-            className="form-textarea" // ← GSAP target (global)
+            className="form-textarea"
             required
           ></textarea>
           
-          <button type="submit" className="submit-btn"> {/* ← GSAP target (global) */}
+          <button type="submit" className="submit-btn"> 
             Send
           </button>
         </form>

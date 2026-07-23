@@ -34,11 +34,11 @@ export const AboutSection = ({
         <div className="about-section3" ref={aboutSection3Ref}>
           <h2>SERVICES</h2>
           
-          <div className={styles.linksContainer}> {/* ← Local (hashed) */}
+          <div className={styles.linksContainer}> 
             {Object.keys(SERVICES).map((serviceKey) => (
               <button
                 key={serviceKey}
-                className={`service-btn ${activeService === serviceKey ? 'active' : ''}`} // ← Global class for GSAP
+                className={`service-btn ${activeService === serviceKey ? 'active' : ''}`} 
                 onClick={() => setActiveService(serviceKey)}
               >
                 {SERVICES[serviceKey].title}
@@ -46,7 +46,7 @@ export const AboutSection = ({
             ))}
           </div>
 
-          <div className='service-content'> {/* ← Local (hashed) */}
+          <div className='service-content'> 
             <h3>{SERVICES[activeService].title}</h3>
             <p>{SERVICES[activeService].content}</p>
           </div>
