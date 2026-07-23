@@ -1,4 +1,4 @@
-:global(#home) {
+#home {
   position: relative;
   z-index: 1;
   min-height: 100vh;
@@ -15,7 +15,7 @@
   flex-direction: column;
 }
 
-:global(#home)::before {
+#home::before {
   content: '';
   position: absolute;
   top: 0;
@@ -26,7 +26,7 @@
   z-index: 1;
 }
 
-:global(#home) h2 {
+#home h2 {
   font-size: 4rem;
   font-family: "Poppins", sans-serif;
   font-style: italic;
@@ -35,7 +35,7 @@
   z-index: 2;
 }
 
-:global(#home) p {
+#home p {
   font-family: 'Anaheim', sans-serif;
   letter-spacing: 10px;
   font-size: 1.5rem;
@@ -48,10 +48,10 @@
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
-  :global(#home) h2 {
+  #home h2 {
     font-size: 2.5rem;
   }
-  :global(#home) p {
+  #home p {
     min-width: 13px;
     margin-top: -0.2rem;
     font-size: 1rem;

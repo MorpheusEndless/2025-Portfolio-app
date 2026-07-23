@@ -1,5 +1,5 @@
 import React from "react";
-import styles from './HeroSection.module.css'; 
+import './HeroSection.css'; 
 
 export const HeroSection = ({ homeRef, h2Ref, pRef }) => {
   return (
