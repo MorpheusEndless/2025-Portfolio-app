@@ -1,58 +1,67 @@
-@import './variables.css';
 
-.pin-spacer {
-  z-index: 0 !important;
-}
+   @import './variables.css';
 
-@font-face {
-    font-family: 'Anaheim';
-    src: url('../../fonts/Anaheim-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-    font-size: 1rem;
-  }
-  
-  html {
-    scroll-behavior: smooth;
-  }
-  
-  body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  .section {
-    min-height: 100%;
-    padding: 6rem 2rem 2rem;
-    scroll-margin-top: 5rem;
-  }
-  
-  .loading-spinner {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    width: 50px;
-    height: 50px;
-    border: 3px solid rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    border-top-color: #fff;
-    z-index: 1001;
-    transform: translate(-50%, -50%);
-    display: none;
-  }
-  .loading-spinner.active {
-    display: block;
-  }
-  
-  .page-container {
+   .pin-spacer {
+     z-index: 0 !important;
+   }
+
+   @font-face {
+     font-family: 'Anaheim';
+     src: url('../../fonts/Anaheim-Regular.ttf') format('truetype');
+     font-weight: normal;
+     font-style: normal;
+   }
+
+   html {
+     scroll-behavior: smooth;
+     box-sizing: border-box;
+   }
+
+   *,
+   *::before,
+   *::after {
+     box-sizing: inherit;
+   } 
+   
+   body {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+     background: var(--color-background);
+     color: var(--color-text);
+     font-family: var(--font-primary);
+     -webkit-font-smoothing: antialiased;
+     -moz-osx-font-smoothing: grayscale;
+     text-rendering: optimizeLegibility;
+   }
+
+   .section {
+    min-height: 100vh;
+    padding: var(--spacing-xl) var(--spacing-md) var(--spacing-xl);
     position: relative;
-    z-index: 1;
+    scroll-margin-top: var(--navbar-height, 5rem);
   }
-  
-  .section-line {
-    width: 60%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent 0%, #666 50%, transparent 100%);
-    margin: 3rem auto;
+   
+   .page-container {
+     position: relative;
+     z-index: 1;
+   }
+
+   .about-cursor {
+    display: inline-block;
+    color: var(--color-text-muted);
+    font-weight: var(--font-weight-normal);
+    margin-left: 2px;
   }
+
+@media (max-width: 768px) {
+   .section {
+     padding: var(--spacing-lg) var(--spacing-sm) var(--spacing-sm);
+   }
+ }
+ 
+ @media (max-width: 480px) {
+  .section {
+    padding: var(--spacing-md) var(--spacing-xs) var(--spacing-md);
+  }
+ }

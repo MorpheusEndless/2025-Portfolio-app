@@ -1,35 +1,76 @@
-:root {
-    /* ===== COLORS ===== */
+   :root {
+    /* -------- Brand Colors -------- */
     --color-primary: #00ccff;
     --color-primary-hover: #008dce;
+    --color-accent: #00ccff;
+  
+    /* -------- Backgrounds -------- */
     --color-background: #000000;
     --color-background-light: #0a0a0a;
+  
+    /* -------- Text Colors -------- */
     --color-text: #ffffff;
     --color-text-muted: #999999;
+  
+    /* -------- Borders / Dividers -------- */
     --color-border: #333333;
   
-    /* ===== FONTS ===== */
+    /* -------- Font Families -------- */
     --font-primary: 'Anaheim', sans-serif;
     --font-heading: 'Poppins', sans-serif;
   
-    /* ===== SPACING (Based on 0.5rem = 8px scale) ===== */
-    --spacing-xs: 0.5rem;   /* 8px */
-    --spacing-sm: 1rem;     /* 16px */
-    --spacing-md: 2rem;     /* 32px */
-    --spacing-lg: 4rem;     /* 64px */
-    --spacing-xl: 6rem;     /* 96px */
+    --navbar-height: 90px; /* replace with your actual measured value */
+    
+
+      /* -------- Font Size Scale (Fluid, linear) -------- */
+      --text-xs:   clamp(0.75rem,   0.71875rem + 0.15625vw,  0.875rem);
+      --text-sm:   clamp(0.875rem,  0.84375rem + 0.15625vw,  1rem);
+      --text-base: clamp(1rem,      0.96875rem + 0.15625vw,  1.125rem);
+      --text-md:   clamp(1.125rem,  1.09375rem + 0.15625vw,  1.25rem);
+      --text-lg:   clamp(1.25rem,   1.1875rem  + 0.3125vw,   1.5rem);
+      --text-xl: clamp(1rem, 0.472rem + 1.292vw, 1.505rem);
+      --text-2xl:  clamp(2rem,      1.875rem  + 0.625vw,    2.5rem);
+      --text-3xl:  clamp(2.5rem,    2.375rem  + 0.625vw,    3rem);
+      --text-4xl:  clamp(3rem,      2.8125rem + 0.9375vw,   3.75rem);
+      --text-5xl:  clamp(3.75rem,   3.5625rem + 0.9375vw,   4.5rem);
+      --text-6xl: clamp(2.5rem, 2.25rem + 1.25vw, 3.7rem);
+    
   
-    /* ===== BREAKPOINTS ===== */
-    --breakpoint-mobile: 768px;
-    --breakpoint-tablet: 1024px;
-    --breakpoint-desktop: 1200px;
+    /* -------- Font Weights -------- */
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
   
-    /* ===== BORDER RADIUS ===== */
+    /* -------- Line Heights -------- */
+    --line-height-tight: 1.5;
+    --line-height-normal: 1.5;
+    --line-height-relaxed: 1.75;
+  
+    /* -------- SPACING --------  */
+    --spacing-xs: 0.7rem;   
+    --spacing-sm: 2rem;     
+    --spacing-md: 2rem;     
+    --spacing-lg: 4rem;     
+    --spacing-xl: 6rem;     
+    --spacing-2xl: 8rem;     
+  
+    /* -------- LAYOUT / BREAKPOINTS -------- */
+    --breakpoint-xs: 320px;   /* Small phones */
+    --breakpoint-sm: 640px;   /* Large phones / small tablets */
+    --breakpoint-md: 768px;   /* Tablets */
+    --breakpoint-lg: 1024px;  /* Laptops / small desktops */
+    --breakpoint-xl: 1280px;  /* Desktops */
+    --breakpoint-2xl: 1536px; /* Large desktops / 4K */
+  
+    /* -------- BORDER RADIUS -------- */
     --radius-sm: 8px;
     --radius-md: 12px;
+    --radius-lg: 20px;
     --radius-full: 9999px;
   
-    /* ===== TRANSITIONS ===== */
+    /* -------- TRANSITIONS & ANIMATIONS -------- */
     --transition-fast: 0.3s ease;
     --transition-smooth: 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    --transition-slow: 0.6s cubic-bezier(0.23, 1, 0.32, 1);
   }

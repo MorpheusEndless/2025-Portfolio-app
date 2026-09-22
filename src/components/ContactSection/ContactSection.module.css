@@ -1,156 +1,436 @@
+:root {
+  --disp-a: rgba(255, 130, 220, 0.144);
+  --disp-b: rgba(255, 130, 220, 0.60);
+}
+
 :global(#contact) {
-  padding: 6rem 2rem;
-  background: #000000;
+  --glass-radius: clamp(26px, 1.458rem + 0.833vw, 34px);
+  --glass-radius-sm: clamp(14px, 0.792rem + 0.417vw, 18px);
+  --sun-angle: 135deg;
+  --sun-hot:  rgba(255, 255, 255, 0);
+  --sun-warm: rgba(255, 245, 225, 0);
+  --sun-cool: rgba(180, 215, 255, 0);
+  --sun-gone: rgba(255, 255, 255, 0);
+  --disp-a: rgba(255, 130, 220, 0.144);
+  --disp-b: rgba(255, 130, 220, 0.60);
+
+  position: relative;
+  overflow: hidden;
+  padding: clamp(4rem, 3.333rem + 3.333vw, 6rem)
+           clamp(1.5rem, 1.333rem + 0.833vw, 2rem);
   color: white;
   text-align: center;
+  background: rgb(0, 0, 0);
+  contain: layout paint;
 }
 
-.contactContainer {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.contactContainer h2 {
-  font-family: 'Anaheim', sans-serif;
-  letter-spacing: 14px;
-  font-size: 3rem;
-  margin-bottom: 4rem;
-}
-
-.contactForm {
-  display: flex;
-  flex-direction: column;
-  gap: 2.5rem;
+/* ------------------------------ BACKGROUND -------------------------------- */
+.formWrapper {
+  position: relative;
   width: 100%;
   max-width: 1000px;
   margin: 0 auto;
-  padding: 3rem;
-  border-radius: 12px;
 }
 
-.inputGroup {
+.bgWrapper {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  max-width: 100vw;
+  overflow: hidden;
+  pointer-events: none;
+  border-radius: var(--glass-radius);
+  z-index: 0;
+}
+
+.bgImage {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover 50%;
+  object-position: center 30%;
+  margin: 0 auto;
+}
+
+/* -------------------------------- LAYOUT ----------------------------------- */
+.contactContainer {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.inputPair {
-  display: flex;
-  gap: 2rem;
+.contactContainer h2 {
+  display: inline-block;
+  margin-bottom: clamp(3rem, 2.667rem + 1.667vw, 4rem);
+  font-family: 'Anaheim', sans-serif;
+  font-size: clamp(4rem, 2rem + 5vw, 6rem);
+  margin-right: clamp(-23px, -1.125rem - 4.25vw, -60px);
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: clamp(23px, 0.125rem + 4.25vw, 60px);
+
+  background: linear-gradient(
+    to bottom,
+    rgb(161, 161, 161) 29%,
+    rgb(95, 93, 93) 30%,
+    rgba(34, 34, 34, 0.20) 53%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ------------------------------ GLASS PANEL -------------------------------- */
+.contactForm {
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: clamp(1rem, 0.667rem + 1.667vw, 2rem);
+  row-gap: clamp(1rem, 0.833rem + 0.833vw, 1.5rem);
+  width: 100%;
+  margin: 0 auto;
+  padding: clamp(2rem, 1.667rem + 1.667vw, 3rem);
+  border-radius: var(--glass-radius);
+  background: transparent;
+
+  border: 1px solid rgba(255, 255, 255, 0);
+
+  box-shadow:
+    0 16px 36px -10px rgba(0, 0, 0, 0.65),
+    inset 1px 1px 0 rgba(255, 255, 255, 0),
+    inset -1px -1px 0 rgba(200, 225, 255, 0.18),
+    inset 12px 0 20px -16px var(--disp-a),
+    inset -12px 0 20px -16px var(--disp-b);
+
+  /* SVG filter reference removed — url(#glass-refraction) was the main
+     cause of the scroll dragging. Plain blur/saturate/brightness keeps
+     the glass look without the per-frame SVG filter recompute cost. */
+  backdrop-filter: blur(3px) saturate(140%) brightness(0.96);
+  -webkit-backdrop-filter: blur(3px) saturate(140%) brightness(0.96);
+
+  transition: box-shadow 0.4s ease;
+}
+
+.contactForm::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  padding: 1px;
+  border-radius: inherit;
+  pointer-events: none;
+
+  background: linear-gradient(
+    var(--sun-angle),
+    var(--sun-hot)   0%,
+    var(--sun-warm)  8%,
+    var(--sun-gone) 26%,
+    var(--sun-gone) 68%,
+    var(--sun-cool) 88%,
+    rgba(255, 255, 255, 0) 100%
+  );
+
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.contactForm::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  pointer-events: none;
+
+  background: linear-gradient(
+    var(--sun-angle),
+    rgba(255, 255, 255, 0.045) 0%,
+    rgba(255, 255, 255, 0.012) 22%,
+    rgba(255, 255, 255, 0)     45%,
+    rgba(255, 255, 255, 0)     72%,
+    rgba(255, 255, 255, 0.01)  100%
+  );
+  mix-blend-mode: screen;
+}
+
+.glassHighlight {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  display: none;
+
+  background: radial-gradient(
+    560px circle at var(--pointer-x, 50%) var(--pointer-y, 50%),
+    rgba(255, 255, 255, 0.14) 0%,
+    rgba(255, 255, 255, 0.05) 32%,
+    rgba(255, 255, 255, 0) 62%
+  );
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .glassHighlight { display: block; }
+}
+
+.glassHighlight.isActive {
+  opacity: 1;
+}
+
+/* -------------------------------- FIELDS ----------------------------------- */
+:global(.form-input),
+:global(.form-textarea) {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+  padding: 0.85rem clamp(0.85rem, 0.8rem + 0.25vw, 1rem);
+  border-radius: var(--glass-radius-sm);
+  outline: none;
+  position: relative;
+  z-index: 2;
+  background: rgba(10, 10, 12, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.048);
+  color: #ffffff;
+  font-family: 'Anaheim', sans-serif;
+  font-size: 1rem;
+  font-weight: light;
+  letter-spacing: 2px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  box-shadow:
+    0 16px 36px -10px rgba(0, 0, 0, 0.397),
+    inset 1px 1px 0 rgba(255, 255, 255, 0),
+    inset -1px -1px 0 rgba(200, 225, 255, 0.18),
+    inset 12px 0 20px rgba(200, 225, 255, 0),
+    inset -12px 0 20px rgba(200, 225, 255, 0);
+
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    background-color 0.3s ease;
 }
 
 :global(.form-input) {
-  flex: 1;
-  padding: 1.2rem;
-  border: 1px solid #333;
-  border-radius: 30px;
-  font-size: 1.1rem;
-  background: transparent;
-  color: white;
-  font-family: 'Anaheim', sans-serif;
-  font-weight: bold;
-  letter-spacing: 4px;
-  font-size: 1.7cap;
+  grid-column: span 1;
+}
+
+:global(.form-input):nth-of-type(3) {
+  grid-column: 1 / -1;
 }
 
 :global(.form-textarea) {
-  height: 220px;
-  padding: 1.2rem;
-  border: 1px solid #333;
-  border-radius: 20px;
-  font-size: 1.1rem;
+  grid-column: 1 / -1;
+  height: 30%;
+  min-height: clamp(120px, 100px + 6.25vw, 180px);
   resize: vertical;
-  background: transparent;
-  color: white;
-  font-family: 'Anaheim', sans-serif;
-  font-weight: bold;
-  letter-spacing: 4px;
-  font-size: 1.7cap;
 }
 
-:global(.submit-btn) {
-  padding: 1.2rem 4rem;
-  background: transparent;
-  color: white;
-  border: 1px solid #333;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 1.1rem;
-  transition: all 0.3s ease;
-  text-transform: uppercase;
-  margin-top: 1rem;
-  font-family: 'Anaheim', sans-serif;
-  font-weight: bold;
+:global(.form-input)::placeholder,
+:global(.form-textarea)::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 400;
   letter-spacing: 4px;
-  font-size: 1.9cap;
+  text-shadow: none;
+}
+
+:global(.form-input):hover,
+:global(.form-textarea):hover {
+  border-color: rgba(255, 255, 255, 0.25);
+  background: rgba(10, 10, 12, 0.35);
+  box-shadow:
+    inset 1px 1px 0 rgba(255, 255, 255, 0.1),
+    inset -1px -1px 0 rgba(200, 225, 255, 0.25),
+    inset 10px 0 18px -16px var(--color-primary-hover),
+    inset -10px 0 18px -16px var(--color-primary-hover),
+    0 0 14px var(--color-primary-hover);
+}
+
+:global(.form-input):focus,
+:global(.form-textarea):focus {
+  border-color: var(--color-primary-hover);
+  background: rgba(10, 10, 12, 0.4);
+
+  box-shadow:
+    inset 1px 1px 0 rgba(255, 255, 255, 0.2),
+    inset -1px -1px 0 rgba(200, 225, 255, 0.3),
+    inset 10px 0 18px -16px var(--disp-a),
+    inset -10px 0 18px -16px var(--disp-b),
+    0 0 0 2px var(--color-primary-hover),
+    0 0 20px var(--color-primary-hover);
+}
+
+:global(.form-input):-webkit-autofill,
+:global(.form-input):-webkit-autofill:hover,
+:global(.form-input):-webkit-autofill:focus,
+:global(.form-textarea):-webkit-autofill {
+  -webkit-text-fill-color: #fff;
+  -webkit-box-shadow: 0 0 0 1000px rgba(24, 24, 26, 0.6) inset;
+  transition: background-color 9999s ease-out 0s;
+  font-weight: 400;
+  letter-spacing: 4px;
+  text-shadow: none;
+}
+
+/* --------------------------------- BUTTON ------------------------------------ */
+:global(.submit-btn) {
+  width: min(300px, 105%);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  grid-column: 1 / -1;
+  align-self: center;
+  justify-self: center;
+  margin-top: 1rem;
+  padding: 1.1rem clamp(2rem, 1.167rem + 4.167vw, 4.5rem);
+  border-radius: 999px;
+
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0);
+
+  backdrop-filter: blur(6px) saturate(150%) brightness(0.95);
+  -webkit-backdrop-filter: blur(6px) saturate(150%) brightness(0.95);
+
+  color: #ffffff;
+  font-family: 'Anaheim', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  cursor: pointer;
+
+  box-shadow:
+    0 16px 36px -10px rgba(0, 0, 0, 0.65),
+    inset 1px 1px 0 rgba(255, 255, 255, 0),
+    inset -1px -1px 0 rgba(200, 225, 255, 0.18),
+    inset 12px 0 20px -16px var(--disp-a),
+    inset -12px 0 20px -16px var(--disp-b);
+
+  transition:
+    transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.35s ease,
+    border-color 0.35s ease,
+    color 0.35s ease,
+    letter-spacing 0.35s ease;
+}
+
+:global(.submit-btn)::after {
+  content: "";
+  position: absolute;
+  top: -60%;
+  bottom: -60%;
+  left: -60%;
+  width: 40%;
+  pointer-events: none;
+  mix-blend-mode: screen;
+
+  background: linear-gradient(
+    100deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0) 50%,
+    transparent 100%
+  );
+
+  transform: translateX(-160%) rotate(12deg);
+  transition: transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+:global(.submit-btn):hover::after {
+  transform: translateX(440%) rotate(12deg);
 }
 
 :global(.submit-btn):hover {
-  color: #00ccff;
-  transition: 1s;
+  transform: translateY(-2px);
+  border-color: rgba(0, 195, 255, 0.65);
+  color: var(--color-primary-hover);
+  letter-spacing: 5px;
+  box-shadow:
+    0 22px 44px -12px rgba(0, 0, 0, 0.7),
+    0 0 0 1px var(--color-primary-hover),
+    0 0 32px var(--color-primary-hover),
+    inset 1px 1px 0 var(--color-primary-hover);
+}
+
+:global(.submit-btn):active {
+  transform: translateY(0) scale(0.97);
+  box-shadow:
+    0 6px 16px -6px rgba(0, 0, 0, 0.55),
+    inset 1px 1px 0 var(--color-primary-hover),
+    inset -1px -1px 0 var(--color-primary-hover);
+}
+
+:global(.submit-btn):focus-visible {
+  outline: 2px solid #00ccff;
+  outline-offset: 4px;
 }
 
 :global(.submit-btn):disabled {
-  background: #555;
+  transform: none;
+  border-color: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.5);
   cursor: not-allowed;
+  opacity: 0.5;
+  box-shadow: none;
+  background: transparent;
 }
 
-/* ===== SUCCESS/ERROR MESSAGES (Local) ===== */
+:global(.submit-btn):disabled::after {
+  display: none;
+}
+
+/* -------------------------------- MESSAGES ----------------------------------- */
 .successMessage {
-  color: #4BB543;
   margin-top: 1rem;
+  color: #4bb543;
   font-weight: bold;
+  letter-spacing: 2px;
 }
 
 .errorMessage {
-  color: #ff4444;
   margin-top: 1rem;
+  color: #ff4444;
   font-weight: bold;
+  letter-spacing: 2px;
 }
 
-/* ===== RESPONSIVE ===== */
+/* -------------------------------- RESPONSIVE ---------------------------------- */
 @media (max-width: 768px) {
-  :global(#contact) {
-    padding: 4rem 1.5rem;
-  }
-
-  .contactContainer h2 {
-    font-size: 2rem;
-    letter-spacing: 8px;
-    margin-bottom: 3rem;
-  }
-
   .contactForm {
-    padding: 2rem;
-  }
-
-  .inputPair {
-    flex-direction: column;
-    gap: 1.5rem;
+    grid-template-columns: minmax(0, 1fr);
+    backdrop-filter: blur(7px) saturate(140%) brightness(0.95);
+    -webkit-backdrop-filter: blur(7px) saturate(140%) brightness(0.95);
   }
 
   :global(.submit-btn) {
     width: 100%;
     text-align: center;
+    justify-self: stretch;
   }
 }
 
-@media (max-width: 480px) {
-  .contactContainer h2 {
-    font-size: 1.8rem;
-    letter-spacing: 4px;
-  }
-
+@media (prefers-reduced-motion: reduce) {
+  :global(.submit-btn),
+  :global(.submit-btn)::after,
   :global(.form-input),
-  :global(.form-textarea) {
-    font-size: 1rem;
-    padding: 1rem;
-  }
-
-  :global(.submit-btn) {
-    padding: 1rem 2rem;
+  :global(.form-textarea),
+  .glassHighlight {
+    transition: none !important;
   }
 }

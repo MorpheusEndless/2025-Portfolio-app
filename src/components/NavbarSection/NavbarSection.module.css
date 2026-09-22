@@ -1,67 +1,114 @@
 :global(.navbar) {
-  display: none;
+  display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--spacing-md) 5%;
+  padding: clamp(0.4rem, 0.3rem + 0.5vw, 0.6rem) 5%;
   position: fixed;
-  top: 0;
-  width: 100%;
+  top: clamp(0.75rem, 0.477rem + 1.364vw, 1.5rem);
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 92%;
+  max-width: 1200px;
+  border-radius: 999px;
   z-index: 1000;
-  backdrop-filter: blur(8px);
+  background: rgba(10, 10, 12, 0.096);
+
+  backdrop-filter: url(#liquid-glass-navbar) blur(2px) saturate(150%) brightness(0.95);
+  -webkit-backdrop-filter: url(#liquid-glass-navbar) blur(2px) saturate(150%) brightness(0.95);
+
+  overflow: hidden;
+  isolation: isolate;
+}
+
+:global(.navbar::before) {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  padding: 1.5px;
+  border-radius: inherit;
+  pointer-events: none;
+
+  background: linear-gradient(
+    135deg,
+    rgb(255, 255, 255) 0%,
+    rgba(255, 255, 255, 0) 6%,
+    rgba(255, 255, 255, 0) 94%,
+    rgba(255, 255, 255, 0.616) 100%
+  );
+
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
 }
 
 :global(.navbar) a {
   color: var(--color-text);
   text-decoration: none;
-  font-size: 1.1rem;
+  font-size: var(--text-sm);
   position: relative;
+  font-family: var(--font-primary);
+  letter-spacing: 0.1em;
+  transition: color var(--transition-fast);
 }
 
-:global(.navbar) a:hover {
+:global(.navbar) a:hover,
+:global(.navbar) a:focus {
   color: var(--color-primary);
-  transition: 1s;
-}
-
-:global(.nav-link) {
-  font-family: 'Anaheim', sans-serif;
-  letter-spacing: 2.9px;
-}
-
-:global(.mobile-nav-link) {
-  font-family: 'Anaheim', sans-serif;
-  letter-spacing: 2.9px;
+  outline: none;
 }
 
 .logoContainer {
   z-index: 1000;
+  display: flex;
+  align-items: center;
 }
 
 .logoContainer img {
-  height: 65px;
+  height: clamp(55px, 5vw, 80px);
+  width: auto;
+  transition: transform var(--transition-fast);
 }
 
+.logoContainer img:hover {
+  transform: scale(1.05);
+}
 
 .desktopMenu {
   display: none;
-  width: 65%;
-  gap: 3rem;
+  gap: clamp(1.5rem, 3vw, 3rem);
   list-style: none;
-  margin-left: 40px;
-  margin-top: 20px;
   padding: 0;
- 
+  margin: 0;
   justify-content: center;
+  align-items: center;
+}
+
+.desktopMenu a {
+  white-space: nowrap;
+}
+
+.desktopMenu li {
+  display: inline-block;
+  white-space: nowrap;
 }
 
 .hamMenu {
   display: block;
-  width: 35px;
-  height: 25px;
+  width: clamp(28px, 1.591rem + 0.795vw, 35px);
+  height: clamp(20px, 1.091rem + 0.568vw, 25px);
   position: relative;
   background: transparent;
   border: none;
   cursor: pointer;
   z-index: 1000;
+  padding: 0;
 }
 
 .hamMenuLine {
@@ -69,8 +116,8 @@
   width: 100%;
   height: 2px;
   background: var(--color-text);
-  transition: all var(--transition-fast);
-  margin-left: -10px;
+  transition: all var(--transition-smooth);
+  left: 0;
 }
 
 .hamMenuLine:first-child {
@@ -79,18 +126,18 @@
 }
 
 .hamMenuLine:last-child {
-  top: 75%;
-  transform-origin: right center;
+  top: calc(100% - 2px);
+  transform-origin: center;
 }
 
 .hamMenuActive .hamMenuLine:first-child {
-  transform: rotate(45deg) translateY(2px);
-  width: 120%;
+  transform: rotate(45deg) translateY(50%);
+  top: 40%;
 }
 
 .hamMenuActive .hamMenuLine:last-child {
-  transform: rotate(-45deg) translateY(2px);
-  width: 120%;
+  transform: rotate(-45deg) translateY(-50%);
+  top: 70%;
 }
 
 .mobileMenu {
@@ -98,12 +145,15 @@
   top: 0;
   left: 0;
   width: 100%;
+  margin-top: 5%;
   height: 100vh;
-  background: var(--color-background);
-  padding: 6rem 2rem;
+  background: rgba(0, 0, 0, 0.95);
+  padding: var(--spacing-xl) var(--spacing-md);
   transform: translateX(100%);
   transition: transform var(--transition-smooth);
   z-index: 999;
+  display: flex;
+  flex-direction: column;
 }
 
 .mobileMenu ul {
@@ -111,30 +161,91 @@
   padding: 0;
   margin: 0;
   display: grid;
-  gap: 1.5rem;
+  gap: var(--spacing-sm);
+}
+
+.mobileMenu ul li a {
+  color: var(--color-text);
+  text-decoration: none;
+  font-family: var(--font-primary);
+  letter-spacing: 0.15em;
+  transition: color var(--transition-fast);
+}
+
+.mobileMenu ul li a:hover,
+.mobileMenu ul li a:focus {
+  color: var(--color-primary);
 }
 
 .mobileMenuActive {
   transform: translateX(0);
-  background-color: rgb(0, 1, 20);;
 }
 
 /* ===== DESKTOP RESPONSIVE ===== */
-@media (min-width: 768px) {
+@media (min-width: 900px) {
+  :global(.navbar) {
+    width: 68%;
+  }
 
-  .hamMenu{
+  .hamMenu {
     display: none;
   }
 
   .desktopMenu {
     display: flex;
     position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-
+    left: 45%;
+    top: 56%;
+    transform: translate(calc(-50% + clamp(15px, 0.483rem + 2.273vw, 35px)), -50%);
+    width: auto;
   }
 
   .mobileMenu {
     display: none;
   }
+}
+
+/* ===== THE STANDALONE CONTACT BUTTON (LIQUID GLASS) ===== */
+.contactBtn {
+  display: none; 
+  align-items: center;
+  justify-content: center;
+  padding: 0.3rem 1.8rem;
+  border-radius: 999px;
+  text-decoration: none;
+  color: #ffffff;
+  font-family: var(--font-primary);
+  font-size: var(--text-sm);
+  letter-spacing: 0.2em;
+  margin-right: 1rem;
+  position: relative;
+  
+  background: rgba(10, 10, 12, 0.075); 
+  border: 1px solid transparent;
+
+  backdrop-filter: url(#liquid-glass-navbar) blur(10px) saturate(140%) brightness(0.95);
+  -webkit-backdrop-filter: url(#liquid-glass-navbar) blur(10px) saturate(140%) brightness(0.95);
+  -webkit-box-shadow:
+  inset 2px 2px 0px -2px;
+  box-shadow: inset 0.5px 0.5px rgba(255, 255, 255, 0.473);
+
+  /* --- ADDED: 2 SECOND SMOOTH TRANSITION --- */
+  transition: all 10s ease-in-out;
+}
+
+/* Make the button visible on desktop */
+@media (min-width: 900px) {
+  .contactBtn {
+    display: flex;
+  }
+}
+
+/* --- HOVER STATE --- */
+.contactBtn:hover {
+  border-color: rgba(0, 204, 255, 0.5);
+  color: #00ccff;
+  box-shadow: 
+    0 0 15px rgba(0, 204, 255, 0.6),   /* Tight, intense inner glow */
+    0 0 35px rgba(0, 204, 255, 0.3),   /* Wider, softer halo */
+    inset 0 0 10px rgba(0, 204, 255, 0.2); /* Inner glow on the glass itself */
 }

@@ -10,8 +10,8 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  color: white;
-  padding: 2rem;
+  color: var(--color-text);
+  padding: var(--spacing-md);
   flex-direction: column;
 }
 
@@ -22,40 +22,58 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.425);
+  background: hsla(0, 0.00%, 0.00%, 0.42);
   z-index: 1;
 }
 
-#home h2 {
-  font-size: 4rem;
-  font-family: "Poppins", sans-serif;
+.heroTextGroup {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 90%;
+  min-height: 100px;
+}
+
+.heroTextGroup h2 {
+  font-size: var(--text-6xl); /* already fluid */
+  font-family: var(--font-heading);
   font-style: italic;
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  line-height: var(--line-height-tight);
   z-index: 2;
 }
 
-#home p {
-  font-family: 'Anaheim', sans-serif;
-  letter-spacing: 10px;
-  font-size: 1.5rem;
+.heroTextGroup p {
+  font-size: var(--text-xl);          /* already fluid */
+  font-family: var(--font-primary);
+  letter-spacing: clamp(0.5rem, 3vw, 0.55rem);  /* slightly smaller min for better fit */
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-  max-width: 1000px;
-  line-height: 1.6;
-  margin-top: -1rem;
-  z-index: 2;
+  max-width: 1050px;
+  line-height: var(--line-height-relaxed);
+  margin-top: calc(var(--spacing-xs) * -1);
+  text-align: center;
+  min-height: 2.5rem;
+  padding: 0 clamp(0.2rem, 3vw, 2rem);
+  white-space: normal;  /* allow wrapping at spaces */
+  position: relative;
 }
 
-/* ===== RESPONSIVE ===== */
-@media (max-width: 768px) {
-  #home h2 {
-    font-size: 2.5rem;
-  }
-  #home p {
-    min-width: 13px;
-    margin-top: -0.2rem;
-    font-size: 1rem;
-    letter-spacing: 6.5px;
-    padding: 0 1rem;
-  }
+.typewriter-cursor {
+  display: inline-block;
+  color: var(--color-primary);
+  font-weight: var(--font-weight-bold);
+  font-size: 1em; /* always matches the parent p */
+  animation: blink 0.8s step-end infinite;
+  margin-left: -2px;
+  position: relative;
+  top: -0.05em; /* slight vertical alignment, relative to font size */
+}
+
+/* Blinking animation */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }

@@ -1,6 +1,12 @@
+/* ===== ADD THESE VARIABLES TO YOUR GLOBAL :root IF YOU HAVEN'T ALREADY ===== */
+:root {
+  --disp-a: rgba(255, 130, 220, 0.144);
+  --disp-b: rgba(255, 130, 220, 0.60);
+}
+
 .footerSection {
   background: #000000;
-  padding: 1rem 13rem;
+  padding: 1rem clamp(1rem, -5.3rem + 21vw, 13rem);
   position: relative;
   z-index: 10;
 }
@@ -8,48 +14,75 @@
 .footerSection p {
   color: white;
   font-family: 'Anaheim', sans-serif;
-  letter-spacing: 2px;
-  font-size: 1.2rem;
+  letter-spacing: clamp(1px, 0.5px + 0.1vw, 2px);
+  font-size: clamp(0.9rem, 0.74rem + 0.52vw, 1.2rem);
   text-align: center;
 }
 
 .sectionLine {
-  width: 70%;
-  height: 2.8px;
+  width: clamp(73%, 82.333% - 0.729vw, 80%);
+  height: clamp(2.7px, 0.05rem + 0.15vw, 2.9px);
   background: linear-gradient(90deg, transparent 0%, #666 50%, transparent 100%);
-  margin: 3rem auto;
+  margin: clamp(2.5rem, 0.72rem + 2.61vw, 3rem) auto;
 }
 
 .socialContainer {
   display: flex;
   justify-content: center;
-  gap: 1.5rem;
-  padding: 1.5rem;
+  gap: clamp(0.8rem, 0.435rem + 1.217vw, 1.5rem);
+  padding: clamp(0.8rem, 0.435rem + 1.217vw, 1.5rem);
   text-decoration: none;
-  direction: none;
 }
 
+/* ===== BASE SOCIAL ICON (GLASS EFFECT) ===== */
 .socialIcon {
-  width: 50px;
-  height: 50px;
-  margin-top: -52px;
+  width: clamp(40px, 2.174rem + 1.087vw, 50px);
+  height: clamp(40px, 2.174rem + 1.087vw, 50px);
+  margin-top: calc(-1 * clamp(40px, 2.109rem + 1.304vw, 52px));
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.8rem;
+  font-size: clamp(1.2rem, 0.887rem + 1.043vw, 1.8rem);
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
-  direction: none;
   text-decoration: none;
   animation: float 4s ease-in-out infinite;
+
+  /* Smoked dark glass tint */
+  background: rgba(10, 10, 12, 0.25);
+
+  /* Subtle hairline rim */
+  border: 1px solid rgba(255, 255, 255, 0);
+
+  /* Magnifying Glass Refraction */
+  backdrop-filter: url(#glass-refraction) blur(4px) saturate(140%) brightness(0.96);
+  -webkit-backdrop-filter: url(#glass-refraction) blur(4px) saturate(140%) brightness(0.96);
+
+  /* Chromatic Dispersion Inset Shadows */
+  box-shadow:
+    0 8px 16px -6px rgba(0, 0, 0, 0.65),
+    inset 1px 1px 0 rgba(255, 255, 255, 0.1),
+    inset -1px -1px 0 rgba(200, 225, 255, 0.2),
+    inset 6px 0 10px -8px var(--disp-a),
+    inset -6px 0 10px -8px var(--disp-b);
 }
 
+/* ===== HOVER EFFECT (COMBINED GLASS + GLOW) ===== */
 .socialIcon:hover {
   animation: none;
   transform: translateY(-5px) scale(1.1);
-  box-shadow: 0 5px 15px #00ccff;
+
+  background: rgba(0, 204, 255, 0.05);
+  border-color: rgba(0, 204, 255, 0.4);
+
+  box-shadow:
+    0 5px 15px #00ccff,
+    inset 1px 1px 0 rgba(255, 255, 255, 0.2),
+    inset -1px -1px 0 rgba(200, 225, 255, 0.3),
+    inset 6px 0 10px -8px var(--disp-a),
+    inset -6px 0 10px -8px var(--disp-b);
 }
 
 .socialIcon::before {
@@ -72,103 +105,84 @@
   transition: all 0.3s ease;
 }
 
-/* ===== INDIVIDUAL ICON COLORS (Local) ===== */
-.whatsapp {
-  color: #ffffff;
-}
-.linkedin {
-  color: #ffffff;
-}
-.github {
-  color: #f0f6fc;
-}
-.email {
-  color: #ffffff;
+/* ===== INDIVIDUAL ICON COLORS ===== */
+.whatsapp { color: #ffffff; }
+.linkedin { color: #ffffff; }
+.github { color: #f0f6fc; }
+.email { color: #ffffff; }
+
+/* ===== INDIVIDUAL HOVER EFFECTS ===== */
+.whatsapp:hover { color: #00ccff; }
+.linkedin:hover { color: #00ccff; }
+.github:hover { color: #00ccff; }
+.email:hover { color: #00ccff; }
+
+/* ===== NEW ADDITIONS FOR LOGO AND COPYRIGHT ===== */
+
+/* 1. Logo Container - Centered and placed below the paragraph */
+.logoContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* ===== INDIVIDUAL HOVER EFFECTS (Local) ===== */
-.whatsapp:hover {
-  background: #000000;
-  color: #00ccff;
-}
-.linkedin:hover {
-  background: #000000;
-  color: #00ccff;
-}
-.github:hover {
-  background: #000000;
-  color: #00ccff;
-}
-.email:hover {
-  background: #000000;
-  color: #00ccff;
+.logoContainer img {
+  max-width: clamp(80px, 7vw + 60px, 120px);
+  height: auto;
+  display: block;
 }
 
-/* ===== RESPONSIVE ===== */
-@media (max-width: 1200px) {
-  .footerSection {
-    padding: 1rem 8rem;
-  }
+/* ===== PROFESSIONAL FOOTER CTA STYLING ===== */
+.footerCta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 700px; /* Constrains the width so the text doesn't stretch too far */
+  margin: 0 auto;   /* Centers the whole block */
+  padding: 0 1rem;
 }
 
-@media (max-width: 992px) {
-  .footerSection {
-    padding: 1rem 4rem;
-  }
-  .footerSection p {
-    font-size: 1.1rem;
-  }
+.ctaHeading {
+  font-family: 'Anaheim', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin: 0 0 0.7rem 0;
+  
+  /* Premium Metallic Gradient to match your logo/contact heading */
+  background: linear-gradient(to right, #ffffff, #a0a0a0);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  
+  /* Subtle drop shadow to lift it off the black background */
+  filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.5));
 }
 
-@media (max-width: 768px) {
-  .footerSection {
-    padding: 1rem 2rem;
-  }
-  .footerSection p {
-    font-size: 1rem;
-    letter-spacing: 1px;
-  }
-  .socialContainer {
-    gap: 1rem;
-    padding: 1rem;
-  }
+.ctaText {
+  font-family: 'Anaheim', sans-serif;
+  font-size: 1rem; /* Smaller than the heading */
+  color: rgba(255, 255, 255, 0.6); /* Dimmed so it doesn't compete with the heading */
+  letter-spacing: 1.5px;
+  line-height: 1.8; /* Better readability */
+  text-align: center;
+  margin: 0;
+  font-weight: 300; /* Lighter weight for elegance */
+}
+
+/* 2. Copyright Text - Smaller, dimmed, and centered */
+.footerSection p.copyrightText {
+  margin-top: 0;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ===== REDUCED MOTION ===== */
+@media (prefers-reduced-motion: reduce) {
   .socialIcon {
-    width: 45px;
-    height: 45px;
-    font-size: 1.5rem;
-    margin-top: -45px;
-  }
-  .sectionLine {
-    width: 80%;
-    margin: 2.5rem auto;
-    height: 2.8px;
-  }
-}
-
-@media (max-width: 480px) {
-  .footerSection {
-    padding: 1rem;
-  }
-  .footerSection p {
-    font-size: 0.9rem;
-  }
-  .socialContainer {
-    gap: 0.8rem;
-    padding: 0.8rem;
-  }
-  .socialIcon {
-    width: 40px;
-    height: 40px;
-    font-size: 1.2rem;
-    margin-top: -40px;
-  }
-  .socialIcon:hover {
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 3px 10px #00ccff;
-  }
-  .sectionLine {
-    width: 80%;
-    height: 1.5px;
-    margin: 1.5rem auto;
+    animation: none;
   }
 }

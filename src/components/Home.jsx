@@ -1,48 +1,33 @@
 // src/components/Home.jsx
 import { useRef } from 'react';
+import { LoaderSection } from './LoaderSection/LoaderSection';
 import { HeroSection } from './HeroSection/HeroSection';
 import { AboutSection } from './AboutSection/AboutSection';
 import { WorkSection } from './WorkSection/WorkSection';
 import { ContactSection } from './ContactSection/ContactSection';
 import { FooterSection } from './FooterSection/FooterSection';
-import { useScrollAnimation } from './Hooks/useSrollAnimation';
+import { useIntroAnimation } from './Hooks/useIntroAnimation';
+import { useWorkAnimation } from './Hooks/useWorkAnimation';
+import { useContactAnimation } from './Hooks/useContactAnimation';
 
 export const Home = ({ navRef }) => {
-  // Refs
-  const aboutSection1Ref = useRef();
-  const aboutSection2Ref = useRef();
-  const aboutSection3Ref = useRef();
-  const aboutContainerRef = useRef();
-  const spinnerRef = useRef();
-  const homeRef = useRef();
-  const h2Ref = useRef();
-  const pRef = useRef();
+  const homeRef = useRef(null);
+  const h2Ref = useRef(null);
+  const pRef = useRef(null);
+  const workRef = useRef(null);
+  const contactRef = useRef(null);
 
-  // All GSAP logic is now in this custom hook
-  useScrollAnimation({
-    navRef,
-    homeRef,
-    h2Ref,
-    pRef,
-    spinnerRef,
-    aboutSection1Ref,
-    aboutSection2Ref,
-    aboutSection3Ref,
-    aboutContainerRef
-  });
+  useIntroAnimation({ navRef, homeRef, h2Ref, pRef });
+  useWorkAnimation({ workRef });
+  useContactAnimation({ contactRef });
 
   return (
     <div className="page-container">
-      <div className="loading-spinner" ref={spinnerRef}></div>
+      <LoaderSection />
       <HeroSection homeRef={homeRef} h2Ref={h2Ref} pRef={pRef} />
-      <AboutSection 
-        aboutSection1Ref={aboutSection1Ref}
-        aboutSection2Ref={aboutSection2Ref}
-        aboutSection3Ref={aboutSection3Ref}
-        aboutContainerRef={aboutContainerRef}
-      />
-      <WorkSection />
-      <ContactSection />
+      <AboutSection />
+      <WorkSection workRef={workRef} />
+      <ContactSection contactRef={contactRef} />
       <FooterSection />
     </div>
   );
