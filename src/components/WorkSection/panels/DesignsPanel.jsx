@@ -1,6 +1,6 @@
 import { designsProjects } from '../Data/designsProjects';
 import { WorkItem } from '../workitem';
-import styles from './Designs.Panel.module.css'
+import styles from './DesignsPanel.module.css'
 
 export const DesignsPanel = () => {
   return (
