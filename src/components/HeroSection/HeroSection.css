@@ -11,7 +11,7 @@
   background-position: center;
   background-repeat: no-repeat;
   color: var(--color-text);
-  padding: var(--spacing-md);
+  padding: 0 var(--spacing-md);
   flex-direction: column;
 }
 
@@ -32,12 +32,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 90%;
+  max-width: 100%;
   min-height: 100px;
 }
 
 .heroTextGroup h2 {
-  font-size: var(--text-6xl); /* already fluid */
+  white-space: nowrap;                          /* never wrap — one line, always */
+  font-size: clamp(1.8rem, 10vw, 3rem);        /* scales with viewport width */
   font-family: var(--font-heading);
   font-style: italic;
   font-weight: var(--font-weight-semibold);
@@ -47,17 +48,19 @@
 }
 
 .heroTextGroup p {
-  font-size: var(--text-xl);          /* already fluid */
+  width: 100%;
+  font-size: clamp(1rem, 2.6vw + 0.5rem, 1.505rem);
+  /*              ↑ only this changes */
   font-family: var(--font-primary);
-  letter-spacing: clamp(0.5rem, 3vw, 0.55rem);  /* slightly smaller min for better fit */
+  letter-spacing: clamp(0.1rem, 4vw, 0.55rem);
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-  max-width: 1050px;
+  max-width: 100%;
   line-height: var(--line-height-relaxed);
   margin-top: calc(var(--spacing-xs) * -1);
   text-align: center;
   min-height: 2.5rem;
-  padding: 0 clamp(0.2rem, 3vw, 2rem);
-  white-space: normal;  /* allow wrapping at spaces */
+  padding: 0 ;
+  white-space: normal;
   position: relative;
 }
 
