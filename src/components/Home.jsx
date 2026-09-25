@@ -1,4 +1,3 @@
-// src/components/Home.jsx
 import { useRef } from 'react';
 import { LoaderSection } from './LoaderSection/LoaderSection';
 import { HeroSection } from './HeroSection/HeroSection';

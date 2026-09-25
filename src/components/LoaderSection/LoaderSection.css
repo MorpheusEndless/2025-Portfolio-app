@@ -31,7 +31,7 @@
 .loaderHeader {
   display: flex;
   align-items: center;
-  gap: var(--spacing-sm); /* fluid spacing recommended */
+  gap: clamp(0.7rem, 0.267rem + 2.167vw, 2rem);
   width: 100%;
 }
 
@@ -43,7 +43,7 @@
 
 .loaderText {
   color: var(--color-text);
-  font-size: var(--text-lg); /* already fluid */
+  font-size: clamp(1.2rem, 0.818rem + 0.909vw, 1.5rem);
   letter-spacing: 0.15em;
 }
 

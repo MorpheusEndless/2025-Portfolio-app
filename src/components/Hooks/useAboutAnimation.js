@@ -46,8 +46,8 @@ export const useAboutAnimation = (sectionRef, aboutText) => {
 
       mm.add(
         {
-          isDesktop: '(min-width: 901px)',
-          isMobile: '(max-width: 900px)',
+          isDesktop: '(min-width: 1101px)',
+          isMobile: '(max-width: 1100px)',
         },
         (context) => {
           const { isDesktop } = context.conditions;
