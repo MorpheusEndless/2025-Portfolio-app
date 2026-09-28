@@ -20,7 +20,7 @@
 }
 
 .sectionLine {
-  width: clamp(73%, 82.333% - 0.729vw, 80%);
+  width: clamp(73%, 89% - 1.25vw, 85%);
   height: clamp(2.7px, 0.05rem + 0.15vw, 2.9px);
   background: linear-gradient(90deg, transparent 0%, #666 50%, transparent 100%);
   margin: clamp(2.5rem, 0.72rem + 2.61vw, 3rem) auto;
