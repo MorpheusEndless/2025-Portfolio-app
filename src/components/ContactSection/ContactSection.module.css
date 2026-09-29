@@ -15,6 +15,9 @@
   --disp-b: rgba(255, 130, 220, 0.60);
 
   position: relative;
+  display: flex;              /* new */
+  flex-direction: column;     /* new */
+  justify-content: center;    /* new — vertically centers .contactContainer within the min-height box */
   overflow: hidden;
   padding: clamp(4rem, 3.333rem + 3.333vw, 6rem)
            clamp(0.75rem, 0.333rem + 2.033vw, 2rem);
@@ -62,8 +65,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
+  max-width: 1200px; 
 }
 
 .contactContainer h2 {
@@ -99,7 +101,7 @@
   row-gap: clamp(0.5rem, 0.167rem + 1.667vw, 1.5rem);
   width: 100%;
   margin: 0 auto;
-  padding-block: clamp(0.5rem, 1.667rem + 1.667vw, 3rem);
+  padding-block: clamp(1rem, 1.667rem + 1.667vw, 3rem);
   padding-inline: clamp(1rem, 0.5rem + 3vw, 5rem);
   border-radius: var(--glass-radius);
   background: transparent;
