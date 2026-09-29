@@ -92,7 +92,7 @@ export const WorkSection = ({ workRef }) => {
       const groupCenter = groupLeft + (groupRight - groupLeft) / 3;
   
       const viewportWidth = scroller.clientWidth;
-      const targetScrollLeft = groupCenter - viewportWidth / 2.5;
+      const targetScrollLeft = groupCenter - viewportWidth / 2.4;
   
       scroller.scrollLeft = Math.max(0, targetScrollLeft);
     };
