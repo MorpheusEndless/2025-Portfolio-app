@@ -82,52 +82,60 @@ export const WorkSection = ({ workRef }) => {
   useLayoutEffect(() => {
     const scroller = scrollerRef.current;
     if (!scroller) return;
-
+  
     const centerTargetButtons = () => {
       const targetNodes = DEFAULT_CENTERED_KEYS
         .map((key) => buttonRefs.current[key])
         .filter(Boolean);
-
+  
       if (targetNodes.length < 2) return;
-
+  
       scroller.scrollLeft = 0;
-
+  
       const scrollerRect = scroller.getBoundingClientRect();
-
+  
       const lefts = targetNodes.map(
         (node) => node.getBoundingClientRect().left - scrollerRect.left
       );
       const rights = targetNodes.map(
         (node) => node.getBoundingClientRect().right - scrollerRect.left
       );
-
+  
       const groupLeft = Math.min(...lefts);
       const groupRight = Math.max(...rights);
       const groupCenter = groupLeft + (groupRight - groupLeft) / 3;
-
+  
       const viewportWidth = scroller.clientWidth;
       const targetScrollLeft = groupCenter - viewportWidth / 2.5;
-
+  
       scroller.scrollLeft = Math.max(0, targetScrollLeft);
     };
-
-    // Initial default centering on mount.
+  
+    // Run on the next frame, then again shortly after, then once more after
+    // fonts settle — covers slow font-swap timing and any late CSS/layout
+    // settling that can differ between dev and production builds.
     requestAnimationFrame(centerTargetButtons);
+    const settleTimeout = setTimeout(centerTargetButtons, 300);
+  
     if (document.fonts?.ready) {
       document.fonts.ready.then(centerTargetButtons);
     }
-
+  
     let lastWidth = scroller.clientWidth;
-
+  
     const handleResize = () => {
       const currentWidth = scroller.clientWidth;
       if (currentWidth === lastWidth) return;
       lastWidth = currentWidth;
       centerTargetButtons();
     };
-
+  
     window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+  
+    return () => {
+      clearTimeout(settleTimeout);
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   return (
