@@ -55,69 +55,77 @@ export const WorkSection = ({ workRef }) => {
 
   const handleClose = () => setActiveTab('dev');
 
+  // Re-measures the overlay's close-shrink target ONLY on a real window
+  // width change — guards against iOS/Android address-bar collapse
+  // firing bogus resize events (those change viewport HEIGHT, not width).
   useEffect(() => {
     if (activeTab === 'dev') return;
+
+    let lastWidth = window.innerWidth;
+
     const handleResize = () => {
+      const currentWidth = window.innerWidth;
+      if (currentWidth === lastWidth) return;
+      lastWidth = currentWidth;
+
       const node = buttonRefs.current[activeTab];
       if (node) setOriginRect(measureRect(node));
     };
+
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, [activeTab]);
 
+  // Centers dev/ui-ux by default on mount, and re-centers only on a real
+  // scroller width change — same address-bar-resize guard as above,
+  // applied to the filter row itself.
   useLayoutEffect(() => {
     const scroller = scrollerRef.current;
     if (!scroller) return;
-  
+
     const centerTargetButtons = () => {
       const targetNodes = DEFAULT_CENTERED_KEYS
         .map((key) => buttonRefs.current[key])
         .filter(Boolean);
-  
+
       if (targetNodes.length < 2) return;
-  
+
       scroller.scrollLeft = 0;
-  
+
       const scrollerRect = scroller.getBoundingClientRect();
-  
+
       const lefts = targetNodes.map(
         (node) => node.getBoundingClientRect().left - scrollerRect.left
       );
       const rights = targetNodes.map(
         (node) => node.getBoundingClientRect().right - scrollerRect.left
       );
-  
+
       const groupLeft = Math.min(...lefts);
       const groupRight = Math.max(...rights);
       const groupCenter = groupLeft + (groupRight - groupLeft) / 3;
-  
+
       const viewportWidth = scroller.clientWidth;
       const targetScrollLeft = groupCenter - viewportWidth / 2.5;
-  
+
       scroller.scrollLeft = Math.max(0, targetScrollLeft);
     };
-  
-    // --- Initial default centering on mount — runs once, unconditionally,
-    // regardless of the resize guard below. This is what puts dev/ui-ux
-    // centered by default when the page first loads. ---
+
+    // Initial default centering on mount.
     requestAnimationFrame(centerTargetButtons);
     if (document.fonts?.ready) {
       document.fonts.ready.then(centerTargetButtons);
     }
-  
-    // --- Resize guard — only re-centers on a REAL width change, so iOS/
-    // Android address-bar-triggered resize events (which change viewport
-    // HEIGHT, not the scroller's width) can't yank the row back to its
-    // scrollLeft:0 start mid-scroll. ---
+
     let lastWidth = scroller.clientWidth;
-  
+
     const handleResize = () => {
       const currentWidth = scroller.clientWidth;
       if (currentWidth === lastWidth) return;
       lastWidth = currentWidth;
       centerTargetButtons();
     };
-  
+
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
