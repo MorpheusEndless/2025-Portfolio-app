@@ -92,25 +92,28 @@ export const WorkSection = ({ workRef }) => {
       const groupCenter = groupLeft + (groupRight - groupLeft) / 3;
   
       const viewportWidth = scroller.clientWidth;
-      const targetScrollLeft = groupCenter - viewportWidth / 2.4;
+      const targetScrollLeft = groupCenter - viewportWidth / 2.5;
   
       scroller.scrollLeft = Math.max(0, targetScrollLeft);
     };
   
+    // --- Initial default centering on mount — runs once, unconditionally,
+    // regardless of the resize guard below. This is what puts dev/ui-ux
+    // centered by default when the page first loads. ---
     requestAnimationFrame(centerTargetButtons);
     if (document.fonts?.ready) {
       document.fonts.ready.then(centerTargetButtons);
     }
   
-    // Track the scroller's actual WIDTH (not viewport height, which iOS
-    // Safari changes constantly as the address bar collapses/expands
-    // during scroll — firing bogus `resize` events that were resetting
-    // and re-centering the filter row mid-scroll).
+    // --- Resize guard — only re-centers on a REAL width change, so iOS/
+    // Android address-bar-triggered resize events (which change viewport
+    // HEIGHT, not the scroller's width) can't yank the row back to its
+    // scrollLeft:0 start mid-scroll. ---
     let lastWidth = scroller.clientWidth;
   
     const handleResize = () => {
       const currentWidth = scroller.clientWidth;
-      if (currentWidth === lastWidth) return; // width didn't actually change — ignore
+      if (currentWidth === lastWidth) return;
       lastWidth = currentWidth;
       centerTargetButtons();
     };
